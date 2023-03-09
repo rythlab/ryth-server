@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: 'soundry'
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: '123'
+    volumes:
+      - ./.scripts/mongo/:/docker-entrypoint-initdb.d/:ro
+
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   restart: always
+  #   ports:
+  #     - 6379:6379
+
+  # server:
+  #   container_name: soundry-hub
+  #   restart: always
+  #   build:
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8000:8000
+  #   environment:
+  #     PORT: 8000
+  #     MONGO_DB_NAME: 'soundry'
+  #     MONGO_INITDB_ROOT_USERNAME: 'root'
+  #     MONGO_INITDB_ROOT_PASSWORD: '123'
+  #     MONGO_HOST_NAME: 'mongo:27017'
+  #     AUTH_ENCRYPTION_SALT: 'soundry'
+  #   depends_on:
+  #     - mongo

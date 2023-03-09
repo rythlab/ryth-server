@@ -1,0 +1,43 @@
+scalar DataTime
+
+type Query {
+  getGenre(params: IGenre!): Genre
+  searchGenres(params: IGenre): [Genre]
+}
+
+type Mutation {
+  addGenre(params: IAddGenreInput!): Genre
+  updateGenre(params: IUpdateGenreInput!): Genre
+  deleteGenre(params: IDeleteGenreInput!): Boolean
+}
+
+input IDeleteGenreInput {
+  _id: ID!
+}
+
+input IUpdateGenreInput {
+  _id: ID!
+  name: String!
+  active: Boolean
+}
+
+input IAddGenreInput {
+  name: String!
+  active: Boolean
+}
+
+input IGenre {
+  _id: ID
+  name: String
+  active: Boolean
+  createdAt: DataTime
+  updatedAt: DataTime
+}
+
+type Genre {
+  _id: ID!
+  name: String
+  active: Boolean
+  createdAt: DataTime
+  updatedAt: DataTime
+}

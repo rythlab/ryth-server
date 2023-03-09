@@ -1,0 +1,59 @@
+scalar DataTime
+
+type Query {
+  getAlbum(params: IAlbum!): Album
+  searchAlbums(params: IAlbum): [Album]
+}
+
+type Mutation {
+  addAlbum(params: IAddAlbumInput!): Album
+  updateAlbum(params: IUpdateAlbumInput!): Album
+  deleteAlbum(params: IDeleteAlbumInput!): Boolean
+}
+
+input IDeleteAlbumInput {
+  _id: ID!
+}
+
+input IUpdateAlbumInput {
+  _id: ID!
+  name: String!
+  artist: String!
+  releaseYear: String!
+  genres: [String]!
+  albumCover: String
+  active: Boolean
+}
+
+input IAddAlbumInput {
+  name: String!
+  artist: String!
+  releaseYear: String!
+  genres: [String]!
+  albumCover: String
+  active: Boolean
+}
+
+input IAlbum {
+  _id: ID
+  name: String
+  artist: String
+  releaseYear: String
+  genres: [String]
+  albumCover: String
+  active: Boolean
+  createdAt: DataTime
+  updatedAt: DataTime
+}
+
+type Album {
+  _id: ID!
+  name: String
+  artist: User
+  releaseYear: String
+  genres: [Genre]
+  albumCover: String
+  active: Boolean
+  createdAt: DataTime
+  updatedAt: DataTime
+}

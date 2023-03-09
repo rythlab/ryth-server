@@ -1,0 +1,63 @@
+scalar DataTime
+
+type Query {
+  getUser(params: IUser!): User
+  searchUsers(params: IUser): [User]
+}
+
+type Mutation {
+  addUser(params: IAddUserInput!): User
+  updateUser(params: IUpdateUserInput!): User
+  deleteUser(params: IDeleteUserInput!): Boolean
+}
+
+input IAddUserInput {
+  name: String!
+  description: String
+  userType: String!
+  contact: String
+  email: String!
+  accessToken: String
+  active: Boolean
+}
+
+input IUpdateUserInput {
+  _id: ID!
+  name: String!
+  description: String
+  userType: String!
+  contact: String
+  email: String
+  accessToken: String
+  active: Boolean
+}
+
+input IDeleteUserInput {
+  _id: ID!
+}
+
+input IUser {
+  _id: ID
+  name: String
+  description: String
+  userType: String
+  contact: String
+  email: String
+  accessToken: String
+  active: Boolean
+  createdAt: DataTime
+  updatedAt: DataTime
+}
+
+type User {
+  _id: ID!
+  name: String
+  description: String
+  userType: UserType
+  contact: String
+  email: String
+  accessToken: String
+  active: Boolean
+  createdAt: DataTime
+  updatedAt: DataTime
+}
